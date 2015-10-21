@@ -1,5 +1,15 @@
+body{
+	height:100%;
+	width: 100%;
+}
+
+iframe{
+	margin-bottom: 350px;
+}
+
 .main-id-wrapper {
 	width: 100%;
+	height: 100%;
 	background-color: #d8d8d8;
 }
 
@@ -59,11 +69,12 @@ ol > li {
 
 
 .content-box {
-	height:30em;
+	height:80%;
 	width: 100%;
+	
 }
 .footer {
-	height:5em;
+	height:10em;
 	width:100%;
 	background-color: #2c3e50;
 }
@@ -95,13 +106,13 @@ ol > li {
 }
 .genre{
 	width:75em;
-	height: 10em;
+	height: 13em;
 	/*background-color: #000000;*/
 	margin: 0 auto;
 	margin-top:2em;
 }
 
-.mood > button {
+.mood > input {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
 	color: #ffffff;
@@ -113,7 +124,7 @@ ol > li {
 	box-shadow: 0px 0px 3px #282828;
 }
 
-.genre > button {
+.genre > input {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
 	color: #ffffff;
@@ -125,36 +136,37 @@ ol > li {
 	box-shadow: 0px 0px 3px #282828;
 }
 
-#white {
+#Curious {
 	background-color: #ecf0f1;
 	color:#585858;
+	
 }
 
-#red {
+#Energetic {
 	background-color: #e74c3c;
 }
 
-#orange {
+#Anxious {
 	background-color: #e67e22;
 }
 
-#yellow {
+#Happy {
 	background-color: #f1c40f;
 }
 
-#green{
+#Relaxed{
 	background-color: #2ecc71;
 }
 
-#turquoise{
+#Tranquil{
 	background-color:#1abc9c;
 }
 
-#blue{
+#Sad{
 	background-color:#3498db;
 }
 
-#violet{
+#Ambitious{
 	background-color:#9b59b6;
 }
 
@@ -182,6 +194,7 @@ ol > li {
 
 #electronic{
 	background-color:#888888;
+
 }
 
 #dance{
@@ -192,3 +205,55 @@ ol > li {
 	background-color:#B8B8B8;
 	color: #404040;
 }
+
+.action-box{
+	width: 75em;
+	height: 10em;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-bottom: 5em;
+}
+
+.action-box > button {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: #666666;
+	height: 6em;
+	width: 12em;
+	margin-left: 9em;
+	border-style: none;
+	border-radius: .5em;
+	box-shadow: 0px 0px 3px #282828;
+	background-color: #ffffff;
+}
+.results{
+	height:80%;
+	width: 100%;
+	border: 1px solid black;
+	display: none;
+}
+.select{
+	color: #555555;
+	border: 3px solid black;
+}
+
+.search-results {
+	width: 75em;
+	height: 30em;
+	border: 1px solid black;
+	margin: 0 auto;
+	display: none;
+}
+#video {
+	width: 49%;
+	height: 100%;
+	border: 1px solid red;
+	display: none;
+
+}
+#title-info {
+	width: 46%;
+	height: 100%;
+	border: 1px solid blue;
+	display: inline-block;
+	}

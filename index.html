@@ -5,6 +5,10 @@
 	<title>Document</title>
 	<link rel="stylesheet" type="text/css" href="CSS/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Lobster' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="JS/app.js"></script>
+	<script src="http://connect.soundcloud.com/sdk.js"></script>
+	<script src="//connect.soundcloud.com/sdk-2.0.0.js"></script> 
 </head>
 <body>
 	<div class="main-id-wrapper">
@@ -19,33 +23,43 @@
 				<ol id="start-instructions">
 					<li>Select a Mood</li>
 					<li>Select a Genre</li>
-					<li>Hit Go!</li>
+					<li>Hit Play!</li>
 				</ol>
 			</div>
 		</div>
 		<div class="content-box">
 			<div class="mood">
-				<div class="caption1">Mood</div>
-				<button id="turquoise">Tranquil</button>
-				<button id="green">Relaxed</button>
-				<button id="blue">Sad</button>
-				<button id="violet">Ambitious</button>
-				<button id="red">energetic</button>
-				<button id="orange">anxious</button>
-				<button id="yellow">cheerful</button>	
-				<button id="white">curious?</button>
+				<div class="caption1" >Mood</div>
+				<input type="button" id="Tranquil" value="Tranquil" >
+				<input type="button" id="Relaxed" value="Relaxed">
+				<input type="button" id="Sad" value="Sad">
+				<input type="button" id="Ambitious" value="Ambitious">
+				<input type="button" id="Energetic" value="Energetic">
+				<input type="button" id="Angst" value="Angst">
+				<input type="button" id="Happy" value="Happy">
+				<input type="button" id="Curious" value="Random">	
 			</div>
 			<div class="genre">
-				<div class="caption2">Genre</div>
-				<button id="classical">Classical</button>
-				<button id="jazz">Jazz</button>
-				<button id="hip-hop">Hip-Hop</button>
-				<button id="r-b">R and B</button>
-				<button id="regee">regee</button>
-				<button id="electronic">electronic</button>
-				<button id="dance">dance</button>
-				<button id="pop">pop</pop>
+				<div class="caption1" >Genre</div>
+				<input type="button" id="classical" value="Classical" >
+				<input type="button" id="jazz" value="Jazz">
+				
+				<input type="button" id="hip-hop" value="Hip-Hop">
+				<input type="button" id="r-b" value="R and B">
+				<input type="button" id="regee" value="Regee">
+				<input type="button" id="electronic" value="electronic">
+				<input type="button" id="dance" value="Dance">
+				<input type="button" id="pop" value="Pop">
 			</div>
+		</div>
+		 <div class="search-results">
+			<div id="player"></div>
+			<div id="title-info"></div>
+		</div>
+		<div class="action-box">
+			<button id="play" >Play</button>
+			<button id="pause" >Pause</button>
+			<button id="reset" >Reset</button>
 		</div>
 		<div class="footer"></div>
 	</div>
