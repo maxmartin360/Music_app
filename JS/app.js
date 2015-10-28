@@ -1,9 +1,7 @@
 var playlist = [];
-var videoIndex = 1;
+var videoIndex = 0;
 
 $(document).ready( function() {
-
-	
 
 	$(".mood :input, .genre :input" ).click(function(e){
 		e.preventDefault;
@@ -17,13 +15,12 @@ $(document).ready( function() {
 		 event.preventDefault();
 		 var mood = $('.mood > .selected').val();
 		 var genre = $('.genre > .selected').val();
-
-		 var searchTerm = (mood + '/' + genre)
-		 console.log(searchTerm)
+		 var searchTerm = (mood + '/' + genre + '/music')
+		 console.log(searchTerm);
 		 getRequest(searchTerm);
 		 $('.search-results').show('slow');
 		 $('.content-box').hide('slow');
-		
+		 playVideo();
 		});
 
 
@@ -49,10 +46,20 @@ $(document).ready( function() {
 	function showResults(results){
 		var html = "";
 		playlist = [];
-		videoIndex = 1;
+		videoIndex = 0;
 	 	$.each(results, function(index,value){
-		    html += '<p>' + value.snippet.title + '</p>';
-			html += '<img class="image" src="' + value.snippet.thumbnails.default.url + '"/>';
+	 		html += '<div class="description-wrap">';
+	 		html += 	'<div class="next-image">';
+	 		html += 		'<a style="text-decoration: none;" href="https://www.youtube.com/watch?v=' + value.id.videoId + '">';
+	 		html += 		'<img  src="' + value.snippet.thumbnails.default.url + '"/>';
+	 		html += 		'</a>';
+	 		html +=		'</div>';
+	 		html += 	'<div class="next-title" style="text-decoration: none;">';
+	 		html += 		'<a href="https://www.youtube.com/watch?v=' + value.id.videoId + '">';
+	 		html += 		'<div class="titles" style="overflow: hidden;">' + value.snippet.title + '</div>';
+	 		html += 		'</a>';
+	 		html += 	'</div>';
+			html += '</div>';
 			playlist.push(value.id.videoId);
 		    
 	   //console.log(value.Title);
@@ -62,16 +69,40 @@ $(document).ready( function() {
 
 	
 
-	$(function(){
-		$('#reset').click(function(e){
-			e.preventDefault
-			$('.search-results').hide('slow');
-			$('.content-box').show('slow');
-			$(".mood :input, .genre :input" ).removeClass("selected")
-			player.stopVideo()
-			player.clearVideo();
-		});
+
+	$('#reset').click(function(e){
+		e.preventDefault
+		$('.search-results').hide('slow');
+		$('.content-box').show('slow');
+		$(".mood :input, .genre :input" ).removeClass("selected")
+		player.stopVideo();
+		var playlist = [];
+		var videoIndex = 0;
+		var searchTerm = null;
+		var results = null;
+		player.clearVideo();
+		player.destroy();
+
 	})
+
+	$('#rewind, #play, #pause, #forward, #reset').hover(function(){
+		$(this).css('color', '#333333');
+		}, function() {
+		$(this).css('color', '#7f8c8d');	
+	});
+	
+	$('#pause').click(function(e){
+		player.pauseVideo();
+	});
+
+	$('#forward').click(function(e){
+			nextVideo();
+	});
+
+	$('#rewind').click(function(e){
+			previousVideo();
+	});	
+		
 });
 
 var player;
@@ -87,36 +118,44 @@ var player;
         });
       }
 
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      
-      function onPlayerStateChange(event) {
-      	console.log(event.data);
-        if (event.data == YT.PlayerState.(-1) ) {
-        	setTimeout(stopVideo)
-        }
-      }
-
-function stopVideo() {
-  	$('#reset').click(function(e){
-    player.stopVideo();
-    player.clearVideo();
-    $('.search-results').hide('slow');
-	$('.content-box').show('slow');
-	$(".mood :input, .genre :input" ).removeClass("selected");
-    });
+function onPlayerReady(event) {
+event.target.playVideo();
 };
 
 
-/*		$('#reset').click(function(e){
-			e.preventDefault
-			$('.search-results').hide('slow');
-			$('.content-box').show('slow');
-			$(".mood :input, .genre :input" ).removeClass("selected")
-			player.stopVideo()
-		});
-*/
+function onPlayerStateChange(event) {
+		if (event.data == YT.PlayerState.ENDED) {
+			nextVideo();
+		 };
+	};
 
 
+function nextVideo(){
+	if(videoIndex == 4) {
+		return;
+	}  
+	stopVideo();
+	player.clearVideo();
+	videoIndex ++;
+	player.loadVideoById(playlist[videoIndex], 0, "large");
+	playVideo();
+};
+
+function stopVideo() {
+player.stopVideo();
+};
+
+function playVideo() {
+player.playVideo();
+};
+
+function previousVideo() {
+	if(videoIndex == 0) {
+		return;
+	} 
+	stopVideo();
+	player.clearVideo();
+	videoIndex --;
+	player.loadVideoById(playlist[videoIndex], 0, "large");
+	playVideo();
+}

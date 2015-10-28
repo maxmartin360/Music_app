@@ -5,6 +5,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" type="text/css" href="CSS/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans|Lobster' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="JS/app.js"></script>
 	<script src="http://connect.soundcloud.com/sdk.js"></script>
@@ -18,12 +19,11 @@
 			<div id="spotify">Spotify Logo Goes Here</div>
 		</div>
 		<div class="instructions-bar">
-			<div id="reset-button"> reset button</div>
 			<div class="instructions">
 				<ol id="start-instructions">
 					<li>Select a Mood</li>
 					<li>Select a Genre</li>
-					<li>Hit Play!</li>
+					<li>Hit the Play Button!</li>
 				</ol>
 			</div>
 		</div>
@@ -57,9 +57,17 @@
 			<div id="title-info"></div>
 		</div>
 		<div class="action-box">
-			<button id="play" >Play</button>
-			<button id="pause" >Pause</button>
-			<button id="reset" >Reset</button>
+
+			
+			<div><i  id="rewind" class="fa fa-backward fa-5x"></i></div>
+
+			<div><i  id="play" class="fa fa-play fa-5x"></i></div>
+			<div><i  id="pause" class="fa fa-pause fa-5x"></i></div>
+			<div><i  id="forward" class="fa fa-forward fa-5x"></i></div>
+			<div><i  id="reset" class="fa fa-refresh fa-5x"></i></div>
+
+
+			
 		</div>
 		<div class="footer"></div>
 	</div>
