@@ -18,9 +18,7 @@ $(document).ready( function() {
 		 var searchTerm = (mood + '/' + genre + '/music')
 		 console.log(searchTerm);
 		 getRequest(searchTerm);
-		 $('.search-results').show('slow');
-		 $('.content-box').hide('slow');
-		 playVideo();
+		 
 		});
 
 
@@ -40,6 +38,9 @@ $(document).ready( function() {
     	tag.src = "https://www.youtube.com/iframe_api";
     	var firstScriptTag = document.getElementsByTagName('script')[0];
     	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    	$('.search-results').show('slow');
+		$('.content-box').hide('slow');
+		playVideo();
 	  });
 	}
 		
@@ -49,7 +50,7 @@ $(document).ready( function() {
 		videoIndex = 0;
 	 	$.each(results, function(index,value){
 	 		html += '<div class="description-wrap">';
-	 		html += 	'<div class="next-image">';
+	 		html += 	'<div class="next-image" style="text-decoration: none;">';
 	 		html += 		'<a style="text-decoration: none;" href="https://www.youtube.com/watch?v=' + value.id.videoId + '">';
 	 		html += 		'<img  src="' + value.snippet.thumbnails.default.url + '"/>';
 	 		html += 		'</a>';
@@ -81,8 +82,6 @@ $(document).ready( function() {
 		var searchTerm = null;
 		var results = null;
 		player.clearVideo();
-		player.destroy();
-
 	})
 
 	$('#rewind, #play, #pause, #forward, #reset').hover(function(){
@@ -107,6 +106,7 @@ $(document).ready( function() {
 
 var player;
       function onYouTubeIframeAPIReady() {
+      	player == null;
         player = new YT.Player('player', {
           height: '390',
           width: '640',
@@ -146,7 +146,11 @@ player.stopVideo();
 };
 
 function playVideo() {
-player.playVideo();
+	if (player != undefined && player.getVideoData()['video_id'] != playlist[videoIndex]) {
+		player.loadVideoById(playlist[videoIndex], 0, "large");
+	} 
+
+	if (player != undefined) player.playVideo();
 };
 
 function previousVideo() {
